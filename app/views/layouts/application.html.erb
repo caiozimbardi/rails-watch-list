@@ -11,6 +11,10 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-light bg-light justify-content-between p-3">
+      <%= link_to "My Lists", lists_path %>
+      <%= link_to "+ New List", new_list_path %>
+    </nav>
     <%= yield %>
   </body>
 </html>

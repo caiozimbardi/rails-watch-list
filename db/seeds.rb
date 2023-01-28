@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+  Movie.destroy_all
+
+  response = HTTParty.get('http://tmdb.lewagon.com/movie/top_rated?')
+  response["results"].each do |movie|
+    Movie.create!(title: movie["title"], overview: movie["overview"], rating: movie["vote_average"].to_i, poster_url: "https://image.tmdb.org/t/p/original#{movie["poster_path"]}")
+  end
