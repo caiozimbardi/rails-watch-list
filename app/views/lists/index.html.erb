@@ -1,7 +1,10 @@
-<h1 class="container">List</h1>
+<div class="container d-flex justify-content-center mt-3">
+  <h1>Create your lists of movies</h1>
+</div>
 
 <% @lists.each do |list| %>
-<div class="card-category container my-4" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))">
-  <%= link_to list.name, list_path(list.id) %>
+<div class="container d-flex justify-content-between align-items-center">
+  <%= link_to list.name, list_path(list.id), class: "card-category container bg-secondary bg-gradient my-4" %>
+  <%= link_to "Delete", list_path(list.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
 </div>
 <% end %>
