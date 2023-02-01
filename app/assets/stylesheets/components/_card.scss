@@ -52,6 +52,7 @@
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
 }
 
 .card-img-top {
@@ -71,4 +72,17 @@
 .card-title {
   text-decoration-line: none;
   font-size: 32px;
+  color: black;
+}
+
+.far {
+  color: black;
+}
+
+.card-title:hover {
+  color: gray;
+}
+
+.far:hover {
+  color: rgb(255, 0, 0);
 }
