@@ -47,3 +47,28 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   text-decoration-line: none;
 }
+
+.card-list {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.card-img-top {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-list .card-list-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.card-title {
+  text-decoration-line: none;
+  font-size: 32px;
+}

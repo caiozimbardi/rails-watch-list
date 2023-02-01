@@ -1,8 +1,7 @@
 .btn-danger {
   border-radius: 5px;
-  height: 180px;
-  display: flex;
-  justify-content: center;
+  min-width: 32px;
+  justify-content: space-between;
   align-items: center;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 
@@ -10,5 +9,5 @@
 
  .logo {
   text-decoration-line: none;
-  
+
  }
