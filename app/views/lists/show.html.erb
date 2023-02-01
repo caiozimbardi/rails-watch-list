@@ -2,9 +2,6 @@
 
 
 
-<div class="container d-flex justify-content-center">
-  <%= link_to "ADD NEW BOOKMARK", new_list_bookmark_path(@list), class: "btn btn-success position-absolute" %>
-</div>
 
 <div class="banner container" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @list.photo.key, width: 400, height: 300, crop: :fill %>')">
   <div class="container d-flex justify-content-center">
@@ -12,18 +9,49 @@
   </div>
 </div>
 
+<div class="container d-flex justify-content-center p-3">
+  <%= link_to "ADD NEW BOOKMARK", new_list_bookmark_path(@list), class: "btn btn-success" %>
+</div>
+
+<div class="container mb-3">
+  <div class="row g-4">
+    <% @bookmarks.each do |bookmark| %>
+      <div class="col-sm-12 col-lg-6">
+        <div class="card-product container">
+          <%= image_tag "#{bookmark.movie.poster_url}", alt: "bookmark", width: 200 %>
+          <div class="card-product-infos">
+            <h2><%= bookmark.movie.title %> </h2>
+            <p><%= bookmark.movie.overview%></p>
+            <p><strong><%= bookmark.comment %></strong></p>
+            <div class="d-flex justify-content-between align-items-end">
+              <p>Rating: <%= bookmark.movie.rating %>⭐</p>
+              <%= link_to "", bookmark_path(bookmark.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "far fa-trash-alt" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
 
 <div class="container">
-  <% @bookmarks.each do |bookmark| %>
-    <div class="card-product container my-3">
-    <%= image_tag "#{bookmark.movie.poster_url}", alt: "bookmark", width: 200 %>
-    <div class="card-product-infos">
-      <h2><%= bookmark.movie.title %> </h2>
-      <p><%= bookmark.movie.overview%></p>
-      <p><strong><%= bookmark.comment %></strong></p>
-      <p><%= bookmark.movie.rating %> ⭐</p>
-      <%= link_to "Delete", bookmark_path(bookmark.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <div class="row g-3">
+    <% @bookmarks.each do |bookmark| %>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card-list">
+        <%= image_tag "#{bookmark.movie.poster_url}", alt: "bookmark", class: "card-img-top" %>
+        <div class="p-4 my-3">
+        <h2><%= bookmark.movie.title %> </h2>
+        <p>Rating: <%= bookmark.movie.rating %>⭐</p>
+        <p><%= bookmark.movie.overview%></p>
+        <p>Comments: <strong><%= bookmark.comment %></strong></p>
+        </div>
+          <div class="d-flex justify-content-end p-4">
+            <%= link_to "", bookmark_path(bookmark.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "far fa-trash-alt" %>
+          </div>
+      </div>
     </div>
+    <% end %>
   </div>
-  <% end %>
 </div>
