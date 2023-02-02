@@ -55,3 +55,28 @@
     <% end %>
   </div>
 </div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="card col-12 col-lg-6">
+      <% @list.reviews.each do |review|%>
+      <%=  review.comment %>
+      <%= review.rating %>
+      <% end %>
+    </div>
+    <div class="card col-12 col-lg-6">
+      <%= simple_form_for [@list, @review] do |f| %>
+        <%= f.input :comment %>
+        <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience" %>
+        <%= f.submit "Send your review" %>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+
+<% @list.reviews.each do |review|%>
+  <%=  review.comment %>
+<% end %>
