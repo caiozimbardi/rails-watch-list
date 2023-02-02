@@ -13,39 +13,17 @@
   <%= link_to "ADD NEW BOOKMARK", new_list_bookmark_path(@list), class: "btn btn-success" %>
 </div>
 
-<div class="container mb-3">
-  <div class="row g-4">
-    <% @bookmarks.each do |bookmark| %>
-      <div class="col-sm-12 col-lg-6">
-        <div class="card-product container">
-          <%= image_tag "#{bookmark.movie.poster_url}", alt: "bookmark", width: 200 %>
-          <div class="card-product-infos">
-            <h2><%= bookmark.movie.title %> </h2>
-            <p><%= bookmark.movie.overview%></p>
-            <p><strong><%= bookmark.comment %></strong></p>
-            <div class="d-flex justify-content-between align-items-end">
-              <p>Rating: <%= bookmark.movie.rating %>⭐</p>
-              <%= link_to "", bookmark_path(bookmark.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "far fa-trash-alt" %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-
 <div class="container">
   <div class="row g-3">
     <% @bookmarks.each do |bookmark| %>
-    <div class="col-12 col-md-6 col-lg-4">
+    <div class="col-12 col-md-6 col-lg-4 d-flex">
       <div class="card-list">
         <%= image_tag "#{bookmark.movie.poster_url}", alt: "bookmark", class: "card-img-top" %>
-        <div class="p-4 my-3">
-        <h2><%= bookmark.movie.title %> </h2>
-        <p>Rating: <%= bookmark.movie.rating %>⭐</p>
-        <p><%= bookmark.movie.overview%></p>
-        <p>Comments: <strong><%= bookmark.comment %></strong></p>
+        <div class="content p-4 my-3">
+          <h2><%= bookmark.movie.title %> </h2>
+          <p>Rating: <%= bookmark.movie.rating %>⭐</p>
+          <p><%= bookmark.movie.overview%></p>
+          <p>Comments: <strong><%= bookmark.comment %></strong></p>
         </div>
           <div class="d-flex justify-content-end p-4">
             <%= link_to "", bookmark_path(bookmark.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "far fa-trash-alt" %>
@@ -57,26 +35,24 @@
 </div>
 
 
-<div class="container">
+<div class="container my-3">
   <div class="row">
-    <div class="card col-12 col-lg-6">
+    <div class="col-12 col-lg-6">
+      <h2>All Reviews</h2>
       <% @list.reviews.each do |review|%>
-      <%=  review.comment %>
-      <%= review.rating %>
+      <div>
+      <p><%= review.rating %> ⭐ * <%=  review.comment %></p>
+      <hr>
+      </div>
       <% end %>
     </div>
-    <div class="card col-12 col-lg-6">
+    <div class="card col-12 col-lg-6 p-3">
+      <h2>Add a review </h2>
       <%= simple_form_for [@list, @review] do |f| %>
         <%= f.input :comment %>
-        <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience" %>
+        <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: {controller: "star-rating"}} %>
         <%= f.submit "Send your review" %>
       <% end %>
     </div>
   </div>
-
 </div>
-
-
-<% @list.reviews.each do |review|%>
-  <%=  review.comment %>
-<% end %>

@@ -53,6 +53,8 @@
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-img-top {
@@ -85,4 +87,14 @@
 
 .far:hover {
   color: rgb(255, 0, 0);
+}
+
+.card {
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  height: 300px;
+}
+
+.content {
+  flex-grow: 1;
 }
